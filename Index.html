@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Poema Romántico</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  background: black;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.heart-bubble {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 10s infinite;
+}
+
+.heart-bubble::before,
+.heart-bubble::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart-bubble::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart-bubble::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+#heart {
+  font-size: 100px;
+  color: red;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: pulse 1.5s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#click-text {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#card-container {
+  display: none;
+  margin-top: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  background-color: pink;
+  border-radius: 10px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
+  transition: transform 1s;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
+}
+
+.card.open {
+  transform: rotateX(-180deg);
+}
+
+.card-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  z-index: 11;
+  display: none;
+}
+
+.poem {
+  display: none;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin-top: 20px;
+  font-style: italic;
+  white-space: pre-wrap;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  font-size: 12px;
+}
+
+.titulo {
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.firma {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: right;
+}
+
+#final-heart {
+  display: none;
+  font-size: 150px;
+  color: red;
+  z-index: 20;
+  animation: pulse 2s infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#i18n-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  z-index: 21;
+  width: 100%;
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-bubble');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>  <div id="heart">❤️</div>
+  <div id="click-text">Click aquí</div>  <div id="card-container">
+    <div class="card" id="card"></div>
+    <div class="card-text" id="card-text">Haz click después de leer</div>
+  </div>  <div class="poem" id="poem">
+    <div class="titulo">MI SUEÑO ES....</div>
+    De niño soñaba con ser gigante,
+    con brillar en luces deslumbrantes,
+    ser famoso, ser leyenda,
+    ser el centro de la escena,
+    tener todo lo que el mundo envidia,
+    y ser estrella en la cima del día.Pero como todo en la vida...
+eso cambió,
+se transformó.
+
+No fue que dejé de soñar…
+fue que aprendí a soñar distinto.
+Porque llegaste tú,
+y en tus ojos encontré mi verdadero destino.
+
+Ya no quiero que el mundo me grite,
+quiero que tú me susurres.
+Ya no anhelo ser reconocido allá afuera,
+quiero ser inolvidable en tu mundo.
+No quiero millones en mi billetera,
+solo tener lo justo
+para cumplir cada deseo que nazca en tu voz.
+
+Y si alguna estrella debe brillar…
+que seas tú.
+Mi faro, mi guía,
+mi constelación preferida.
+La única que alumbra mis noches frías.
+
+Porque entendí al verte
+que la verdadera fama es ser amado,
+que la mayor riqueza es compartirlo todo contigo,
+y que no hay gloria más grande
+que ser tu lugar seguro.
+
+Si alguna vez soñé con ser eterno,
+hoy solo deseo
+ser eterno
+en ti.
+
+<span class="firma">Con amor,
+ton éternel amoureux.</span>
+
+  </div>  <div id="final-heart">❤️</div>
+  <div id="i18n-text"></div>  <script>
+    const heart = document.getElementById('heart');
+    const clickText = document.getElementById('click-text');
+    const cardContainer = document.getElementById('card-container');
+    const card = document.getElementById('card');
+    const poem = document.getElementById('poem');
+    const finalHeart = document.getElementById('final-heart');
+    const i18nText = document.getElementById('i18n-text');
+    const cardText = document.getElementById('card-text');
+
+    const audio = new Audio("https://dl.dropboxusercontent.com/scl/fi/bzv7p2q3quqz6qhwixcfa/ROI-TikTok.mp3?rlkey=2awbwcpdzz6qvvxpjqxhnk1cg&dl=0");
+
+    function showCard() {
+      heart.style.display = 'none';
+      clickText.style.display = 'none';
+      cardContainer.style.display = 'block';
+      audio.play();
+
+      setTimeout(() => {
+        card.classList.add('open');
+        setTimeout(() => {
+          poem.style.display = 'block';
+          cardText.style.display = 'block';
+        }, 1000);
+      }, 1000);
+    }
+
+    heart.addEventListener('click', showCard);
+    clickText.addEventListener('click', showCard);
+
+    card.addEventListener('click', () => {
+      cardContainer.style.display = 'none';
+      poem.style.display = 'none';
+      finalHeart.style.display = 'block';
+      startLanguages();
+    });
+
+    const languages = [
+      { text: "TE AMO", font: "serif" },
+      { text: "I LOVE YOU", font: "cursive" },
+      { text: "JE T'AIME", font: "Georgia" },
+      { text: "TE QUIERO", font: "Verdana" },
+      { text: "ICH LIEBE DICH", font: "Impact" },
+      { text: "TI AMO", font: "monospace" },
+      { text: "EU TE AMO", font: "fantasy" },
+      { text: "愛してる", font: "Arial" },
+      { text: "사랑해", font: "Tahoma" },
+      { text: "Я ЛЮБЛЮ ТЕБЯ", font: "Courier New" },
+      { text: "ΕΓΩ Σ'ΑΓΑΠΩ", font: "Trebuchet MS" },
+      { text: "אהבה", font: "Lucida Console" },
+      { text: "أحبك", font: "Times New Roman" },
+      { text: "मैं तुमसे प्यार करता हूँ", font: "Garamond" },
+      { text: "Te amo", font: "Comic Sans MS" }
+    ];
+
+    let langIndex = 0;
+    function startLanguages() {
+      setInterval(() => {
+        const lang = languages[langIndex];
+        i18nText.textContent = lang.text;
+        i18nText.style.fontFamily = lang.font;
+        langIndex = (langIndex + 1) % languages.length;
+      }, 2000);
+    }
+  </script></body>
+</html>
